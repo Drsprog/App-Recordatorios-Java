@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+body {
+  font-family: 'Macondo', cursive;
+  color:white;
+  font-size: 14px;
+  background: #333 url("../Imágenes/Background 1.jpg") no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: cal (100vh - 80px);
+}
+
+form {
+  background:#111; 
+  width:300px;
+  margin:100px auto;
+  border-radius:0.4em;
+  border:1px solid #191919;
+  overflow:hidden;
+}
+
+form:after {
+  content:"";
+  display:block;
+  height:1px;
+  width:100px;
+  left:20%;
+  top:0;
+}
+
+form:before {
+  content:"";
+  display:block;
+  position:absolute;
+  width:8px;
+  height:5px;
+  border-radius:50%;
+  left:34%;
+  top:-7px;
+}
+
+.inset {
+  padding:40px 20px 30px 20px;
+}
+
+form h1 {
+  font-size:18px;
+  text-shadow:0 1px 0 black;
+  text-align:center;
+  padding:20px 0;
+  border-bottom:1px solid rgba(0,0,0,1);
+}
+
+form h1:after {
+  content:"";
+  display:block;
+  width:250px;
+  height:100px;
+  position:absolute;
+  top:0;
+  left:50px;
+  pointer-events:none;
+  transform:rotate(70deg);
+}
+
+label {
+  color:#FFFFFF;
+  display:block;
+  padding-bottom:5px;
+}
+
+input[type=text],
+input[type=password] {
+  width:100%;
+  padding:8px 5px;
+  background:linear-gradient(#1f2124, #27292c);
+  border:1px solid #222;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.1);
+  border-radius:0.3em;
+  margin-bottom:20px;
+  color:#ffffff;
+}
+
+label[for=remember]{
+  color:white;
+  display:inline-block;
+  padding-bottom:0px;
+  padding-top:10px;
+}
+
+
+input[type=checkbox] {
+  display:inline-block;
+  vertical-align:central;
+}
+
+.p-recordatorio {
+ 	padding: 0px 20px 0px 20px;
+}
+
+.p-recordatorio span {
+  display:block;
+  float:left;
+  color:#0d93ff;
+}
+
+.p-container{
+ padding:10px 20px 20px 20px; 
+}
+
+.p-alternativo{
+ padding:10px 20px 20px 20px; 
+ text-align:center;
+}
+
+.p-alternativo:after {
+  clear:both;
+  display:table;
+  content:"";
+}
+
+.p-container:after {
+  clear:both;
+  display:table;
+  content:"";
+}
+
+.p-container span {
+  display:block;
+  float:left;
+  color:#0d93ff;
+  padding-top:8px;
+}
+
+input[type=submit] {
+  padding:5px 20px;
+  border:1px solid rgba(0,0,0,0.4);
+  text-shadow:0 -1px 0 rgba(0,0,0,0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 10px 10px rgba(255,255,255,0.1);
+  border-radius:0.3em;
+  background:#0184ff;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:14px;
+}
+
+input[type=submit]:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -10px 10px rgba(255,255,255,0.1);
+}
+
+#lugar1{
+    float: left;
+}
+
+#lugar2{
+    float: right;
+}
+
+.btn-comun {
+  padding:5px 20px;
+  border:1px solid rgba(0,0,0,0.4);
+  text-shadow:0 -1px 0 rgba(0,0,0,0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 10px 10px rgba(255,255,255,0.1);
+  border-radius:0.3em;
+  background:#0184ff;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.btn-comun:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -10px 10px rgba(255,255,255,0.1);
+}
+
+.ubicacion1{
+    float: left;
+}
+.ubicacion2{
+    float: right;
+}
+
+input[type=text]:hover,
+input[type=password]:hover,
+label:hover ~ input[type=text],
+label:hover ~ input[type=password] {
+background:#27292c;
+}
+
+
+
