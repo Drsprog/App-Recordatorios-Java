@@ -5,7 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
+<%
+    String corr=(String)request.getSession().getAttribute("corr");
+    String nomb=(String)request.getSession().getAttribute("nomb");
+    String apel=(String)request.getSession().getAttribute("apel");
+    
+%>
 <html>
        <head>
         <meta http-equiv="Expires" content="0">

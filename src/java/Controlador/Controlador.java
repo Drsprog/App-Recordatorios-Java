@@ -29,17 +29,25 @@ public class Controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String accion= request.getParameter("accion");
-            switch (accion) {
-            case "Index":
-                request.getRequestDispatcher("Index.jsp");
-                break;
-            case "Index2":
-                request.getRequestDispatcher("Index2.jsp");
-                break;    
-            default:
-                throw new AssertionError();
-            }
+         String menu =request.getParameter("menu");
+         if (menu.equals("Inicio")){
+             request.getRequestDispatcher("Index.jsp").forward(request, response);
+         }
+         if (menu.equals("Inicio2")){
+             request.getRequestDispatcher("Index2.jsp").forward(request, response);
+         }
+        if (menu.equals("Login")){
+             request.getRequestDispatcher("Login.jsp").forward(request, response);
+         }
+        if (menu.equals("Registro")){
+             request.getRequestDispatcher("Registro.jsp").forward(request, response);
+         }
+         if (menu.equals("RegRecordatorio")){
+             request.getRequestDispatcher("CreaRecordatorio.jsp").forward(request, response);
+         }
+            if (menu.equals("RegCategoria")){
+             request.getRequestDispatcher("CreaCategoria.jsp").forward(request, response);
+         }
         }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +79,8 @@ public class Controlador extends HttpServlet {
         processRequest(request, response);
     }
 
+    
+    
     /**
      * Returns a short description of the servlet.
      *

@@ -25,9 +25,9 @@
                 <img src="Imágenes/logo.png" alt="" class="logo"/>
             </a>
             <ul>
-                <li><a href="Index.jsp">Inicio</a></li>
+                 <li><a href="Controlador?menu=Inicio2">Inicio</a></li>
                 <li><a href="Recordatorio.jsp">Recordatorios</a></li>
-                <li><a href="Index.jsp">Cerrar Sesión</a></li>
+                <li><a href="Validar?conf=0">Cerrar Sesión</a></li>
                 <li>
                 <a href="Perfil.jsp" class="fa-regular fa-circle-user"></a>
                 </li>

@@ -20,7 +20,6 @@ public class UsuarioDAO {
     ResultSet rs;
     CallableStatement cs;
     
-    
     public Usuario Validar(String correo, String contra){
         Usuario usu= new Usuario();
         StringBuilder sb= new StringBuilder();
@@ -35,6 +34,8 @@ public class UsuarioDAO {
             while(rs.next()){
                 usu.setCOR_USU(rs.getString("Correo"));
                 usu.setCON_USU(rs.getString("Contraseña"));   
+                usu.setNOM_USU(rs.getString("Nombres"));
+                usu.setAPE_USU(rs.getString("Apellidos"));
             }           
         } catch (Exception e) { 
             System.err.println("Error:" + e);
@@ -50,5 +51,8 @@ public class UsuarioDAO {
         }
         
         return usu;
+        
     }
+    
+   
 }

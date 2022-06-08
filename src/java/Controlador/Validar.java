@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,7 +61,15 @@ public class Validar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         HttpSession ses= request.getSession();
+         int conf=Integer.parseInt(request.getParameter("conf"));
+         if (conf==0){
+           ses.removeAttribute("corr");
+            ses.removeAttribute("nomb");
+            ses.removeAttribute("apel");
+            ses.invalidate();
+            request.getRequestDispatcher("Index.jsp").forward(request, response);
+         }   
     }
 
     /**
@@ -82,6 +91,10 @@ public class Validar extends HttpServlet {
             usu= usuDAO.Validar(cor, pass);
             if (usu.getCOR_USU()!=null) {
 //                response.sendRedirect("Controlador?accion=Index2");
+                HttpSession ses= request.getSession();
+                ses.setAttribute("corr", usu.getCOR_USU());
+                ses.setAttribute("nomb", usu.getNOM_USU());
+                ses.setAttribute("apel", usu.getAPE_USU());
                 request.getRequestDispatcher("Index2.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("Login.jsp").forward(request, response);

@@ -5,7 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
+<%
+    String corr=(String)request.getSession().getAttribute("corr");
+    String nomb=(String)request.getSession().getAttribute("nomb");
+    String apel=(String)request.getSession().getAttribute("apel");
+    if(corr==null){ 
+      request.getRequestDispatcher("Index.jsp").forward(request, response);   
+    }
+%>
+    
 <html>
     <head>
         <meta http-equiv="Expires" content="0">
@@ -17,7 +27,7 @@
         <link href="CSS/pefilest.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-    <%@include file="/header.jsp"%>
+    <%@include file="/headerCuenta.jsp"%>
          <div class="card-container">
             <div class="upper-container">
                 <div class="image-container">
@@ -30,13 +40,13 @@
             </div>
              <br>
             <div>
-               <p>NOMBRE: Juan </p>
+               <p>NOMBRES: <%=nomb%> </p>
             </div>
              <div>
-               <p>APELLIDO: Montañez Hernandez</p>
+               <p>APELLIDOS: <%=apel%> </p>
             </div>
              <div>
-               <p> CORREO: Juanchi12202@gmail.com</p>
+               <p> CORREO:  <%=corr%> </p>
             </div>
             <div>
                <a href="Registro.jsp" class="btn">Modificar Datos</a>

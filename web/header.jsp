@@ -26,9 +26,9 @@
                 <img src="Imágenes/logo.png" alt="" class="logo"/>
             </a>
             <ul>
-                <li><a href="Index.jsp">Inicio</a></li>
-                <li><a href="Login.jsp">Iniciar sesión</a></li>
-                <li><a href="Registro.jsp">Registrarse</a></li>
+                <li><a href="Controlador?menu=Inicio">Inicio</a></li>
+                <li><a href="Controlador?menu=Login">Iniciar sesión</a></li>
+                <li><a href="Controlador?menu=Registro">Registrarse</a></li>
             </ul>
             </nav>
         </header>
