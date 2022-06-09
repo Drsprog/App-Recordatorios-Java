@@ -18,7 +18,7 @@
     </head>
     <body>
         <%@include file="/header.jsp"%>
-        <form>
+        <form action="Validar" method="POST">
           <h1>STARP REMINDER</h1>
           <div class="inset">
           <p>
@@ -46,7 +46,7 @@
             <a href="https://www.youtube.com/" style="color:#ffff00;">¿Se olvidó la contraseña?</a>       
           </p>
           <p class="p-alternativo">
-               <input type="submit" value="Registrar" name="Registro" class="btn-comun">
+               <input type="submit" name="accion" value="Registrar"  class="btn-comun">
           </p>
         </form>
         <%@include file="/footer.jsp"%>

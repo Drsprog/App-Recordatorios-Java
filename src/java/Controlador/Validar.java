@@ -85,6 +85,21 @@ public class Validar extends HttpServlet {
             throws ServletException, IOException {
         
         String accion= request.getParameter("accion");
+        
+        if (accion.equals("Registrar")) {
+            String nom=request.getParameter("nombres");
+            String ape=request.getParameter("apellidos");  
+            String cor=request.getParameter("email");
+            String pass=request.getParameter("password");
+            usu.setNOM_USU(nom);
+            usu.setAPE_USU(ape);
+            usu.setCOR_USU(cor);
+            usu.setCON_USU(pass);
+            usuDAO.Agregar(usu);
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
+        
+            
         if(accion.equalsIgnoreCase("Ingresar")){
             String cor=request.getParameter("email");
             String pass=request.getParameter("password");
@@ -99,9 +114,6 @@ public class Validar extends HttpServlet {
             } else {
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
-        }
-        else{
-              request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
     }
 

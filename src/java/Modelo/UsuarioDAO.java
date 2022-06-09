@@ -17,6 +17,7 @@ public class UsuarioDAO {
     Conexion cn= new Conexion();
     Connection con;
     
+    int r;
     ResultSet rs;
     CallableStatement cs;
     
@@ -52,6 +53,31 @@ public class UsuarioDAO {
         
         return usu;
         
+    }
+    
+    public int Agregar(Usuario u){
+        StringBuilder sb= new StringBuilder();
+        sb.append("{CALL SP_NUEVOUSUARIO(?, ?, ?, ?)}");
+        con=cn.Conexion();
+        try {
+            cs=con.prepareCall(sb.toString());
+            cs.setString(1,u.getNOM_USU());
+            cs.setString(2,u.getAPE_USU());
+            cs.setString(3,u.getCOR_USU());
+            cs.setString(4,u.getCON_USU());
+            cs.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Error:" + e);
+        }
+        finally{
+            try {
+                if(con!=null) con.close();
+                if(cs!=null) cs.close();       
+            } catch (Exception e) {
+                System.err.println("Error:" + e);
+            }
+        }
+        return r;
     }
     
    
