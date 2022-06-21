@@ -11,23 +11,23 @@ import java.sql.Date;
  *
  * @author USUARIO
  */
-public class Recordatorio {
+public class RecVista {
+    
     int IDE_REC;
     String TIT_REC;
-    int IDE_SRV;
+    String NOM_SRV;
     Date INI_REC;
     Date FPG_REC;
     Date ALR_REC;
     String CLC_REC;
 
-    public Recordatorio() {
-        
+    public RecVista() {
     }
 
-    public Recordatorio(int IDE_REC, String TIT_REC, int IDE_SRV, Date INI_REC, Date FPG_REC, Date ALR_REC, String CLC_REC) {
+    public RecVista(int IDE_REC, String TIT_REC, String NOM_SRV, Date INI_REC, Date FPG_REC, Date ALR_REC, String CLC_REC) {
         this.IDE_REC = IDE_REC;
         this.TIT_REC = TIT_REC;
-        this.IDE_SRV = IDE_SRV;
+        this.NOM_SRV = NOM_SRV;
         this.INI_REC = INI_REC;
         this.FPG_REC = FPG_REC;
         this.ALR_REC = ALR_REC;
@@ -50,12 +50,12 @@ public class Recordatorio {
         this.TIT_REC = TIT_REC;
     }
 
-    public int getIDE_SRV() {
-        return IDE_SRV;
+    public String getNOM_SRV() {
+        return NOM_SRV;
     }
 
-    public void setIDE_SRV(int IDE_SRV) {
-        this.IDE_SRV = IDE_SRV;
+    public void setNOM_SRV(String NOM_SRV) {
+        this.NOM_SRV = NOM_SRV;
     }
 
     public Date getINI_REC() {
@@ -90,6 +90,4 @@ public class Recordatorio {
         this.CLC_REC = CLC_REC;
     }
     
-    
 }
-

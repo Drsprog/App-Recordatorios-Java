@@ -3,9 +3,20 @@
     Created on : 22/05/2022, 09:07:05 PM
     Author     : USUARIO
 --%>
-
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.List"%>
+<%@page import="Modelo.RecVista"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
 <!DOCTYPE html>
+<%
+    String corr=(String)request.getSession().getAttribute("corr");
+    String nomb=(String)request.getSession().getAttribute("nomb");
+    String apel=(String)request.getSession().getAttribute("apel");
+    if(corr==null){ 
+    request.getRequestDispatcher("Index.jsp").forward(request, response);   
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Expires" content="0">
@@ -24,67 +35,55 @@
     <div class="bloque" >
         <div class="titulo1">
             <h2>LISTA DE RECORDATORIOS</h2>
+            <div class="bloqueTit">
+                <form action="ContRecordatorio">
+                    <input name="txt" placeholder="Buscar recordatorio..." type="search">
+                    &nbsp
+                    <input name="accion" type="submit" value="Buscar" class="btn-comun">
+                </form>
+                <a href="ContRecordatorio?accion=ListarServ" class="fa-solid fa-plus"></a>    
+            </div>
         </div>
+        <% List<RecVista>lista=(List<RecVista>)request.getAttribute("recordatorio");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        if (!lista.isEmpty()){
+        for(RecVista recordatorio:lista){%>
         <div class="bloque1">
-            <img src="Imágenes/netflix_logo_icon_170919.svg" type="img/svg">
+            <img src="Imágenes/Hourglass.svg" type="img/svg">
         </div>
         <div class="bloque2">
-            <p>
-                NETFLIX
+            <input id="usuCor" name="ideRec" type="hidden" value="<%=recordatorio.getIDE_REC()%>">
+            <p>   
+                <%=recordatorio.getTIT_REC()%>
             </p> 
             <p>
-                Streaming
+                <%=recordatorio.getNOM_SRV()%>
             </p> 
             <p>
-                Fecha de inicio: 28/03/22
+                Fecha de inicio: <%=formato.format(recordatorio.getINI_REC())%>
             </p> 
             <p>
-                Fecha de pago: 28/05/22
+                Fecha de pago: <%=formato.format(recordatorio.getFPG_REC())%>
             </p> 
             <p>
-                Fecha de alarma: 22/05/22
+                Fecha de alerta: <%=formato.format(recordatorio.getALR_REC())%>
             </p> 
             <p>
-                Ciclo de alarma: Diario
-            </p> 
-            <p>
-                Ciclo de pago: Mensual
+                Ciclo de pago: <%=recordatorio.getCLC_REC()%>
             </p> 
         </div>
         <div class="bloque3">
-            <a href="CreaRecordatorio.jsp" class="fa-solid fa-pencil"></a>
-            <a href="CreaCategoria.jsp" class="fa-solid fa-trash-can"></a> 
-        </div>       
-        <div class="bloque1">
-        <i class="fa-brands fa-spotify"></i>
+            <a href="ContRecordatorio?accion=ModificarRec&ideRec=<%=recordatorio.getIDE_REC()%>" class="fa-solid fa-pencil"></a>
+            <a href="ContRecordatorio?accion=EliminarRec&ideRec=<%=recordatorio.getIDE_REC()%>" class="fa-solid fa-trash-can"></a> 
+        </div>   
+        <% } 
+        }
+        else{
+        %>
+        <div class="bloque2aviso">
+                USTED NO TIENE RECORDATORIOS 
         </div>
-        <div class="bloque2">
-            <p>
-                SPOTIFY 
-            </p> 
-            <p>
-                Streaming
-            </p> 
-            <p>
-                Fecha de inicio: 27/04/22
-            </p> 
-            <p>
-                Fecha de pago: 27/05/22
-            </p> 
-            <p>
-                Fecha de alarma: 22/05/22
-            </p> 
-            <p>
-                Ciclo de alarma: Diario
-            </p> 
-            <p>
-                Ciclo de pago: Mensual
-            </p> 
-        </div>
-        <div class="bloque3">
-            <a href="CreaRecordatorio.jsp" class="fa-solid fa-pencil"></a>
-            <a href="CreaCategoria.jsp" class="fa-solid fa-trash-can"></a> 
-        </div>
+        <%}%>
     </div>
     <%@include file="/footer.jsp"%>
     </body>

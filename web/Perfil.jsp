@@ -8,6 +8,7 @@
 <%@page session="true"%>
 <!DOCTYPE html>
 <%
+    int ide=(int)request.getSession().getAttribute("ide");
     String corr=(String)request.getSession().getAttribute("corr");
     String nomb=(String)request.getSession().getAttribute("nomb");
     String apel=(String)request.getSession().getAttribute("apel");
@@ -49,8 +50,8 @@
                <p> CORREO:  <%=corr%> </p>
             </div>
             <div>
-               <a href="Registro.jsp" class="btn">Modificar Datos</a>
-                <a href="Recordatorio.jsp" target="_blank" class="btn">Lista de Recordatorio</a>
+               <a href="ModPerfil.jsp" class="btn">Modificar Datos</a>
+               <a href="ContRecordatorio?accion=ListarRec" class="btn">Lista de Recordatorios</a>
             </div>
             <div> 
                 <p class="linker">

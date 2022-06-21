@@ -4,9 +4,18 @@
     Author     : USUARIO
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Modelo.Categoria"%>
+<%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%
+    int ide=(int)request.getSession().getAttribute("ide");
+    String corr=(String)request.getSession().getAttribute("corr");
+    if(corr==null){ 
+      request.getRequestDispatcher("Index2.jsp").forward(request, response);   
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Expires" content="0">
@@ -16,38 +25,49 @@
         <title>Agregar Servicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="CSS/EstiloServ.css" rel="stylesheet" type="text/css"/>
+        <link href="CSS/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     <%@include file="/header.jsp"%>
     <div class="container">          
-        <form id="servicio">
-        <div class="header">       
-            <h3>Registro de Servicio</h3>
-            <p>Aca podra registrar sus servicios</p>
-        </div>
-        <div class="sep"></div>
-        <div class="inputs">
-            <input type="NOM_SRV" placeholder="Titulo del Servicio" autofocus/>
-            <input type="MON_SRV" placeholder="Monto del Servicio" />
-            <input type="PAG_SRV" placeholder="Pago del Servicio" />
-            <div class="selects">        
-                <select name="Tipo"> 
-                    <option>S/. soles</option>
-                    <option>$/. dolares</option>
+        <form action="ContServicio" method="POST">
+            <h1>REGISTRO DE SERVICIO</h1>
+            <div class="inset">
+            <input id="usuCor" name="ide" type="hidden" value="<%=ide%>">
+            <p>
+                <label for="nombres">NOMBRE</label>
+                <input type="text" name="nombre" id="email">
+            </p>
+            <p>
+                 <label for="apellidos">CATEGORIA</label>
+            </p>
+            <div class="content-select">
+                <select name="categoria" id="servicio">
+                    <% List<Categoria>lista=(List<Categoria>)request.getAttribute("categoria");
+                    if (lista!=null)
+                    for(Categoria categoria:lista){%>
+                    <option value="<%=categoria.getIde_cat()%>"><%=categoria.getNom_cat()%></option>  
+                    <% } %>
                 </select>
-            </div> 
-            <div class="selects">        
-                <select name="Categoria"> 
-                    <option>Entretenimiento</option>
-                    <option>Tienda</option>
-                    <option>Pagina Web</option>
-                    <option>Factura</option>
+            </div>
+            <p>
+                <label for="email">MONEDA</label>
+            </p>
+            <div class="content-select">
+                <select name="moneda">
+                    <option value="Soles">Soles</option>   
+                    <option value="Dolares">Dólares</option>   
                 </select>
-            </div>          
-                <a id="submit" href="#">REGISTRAR</a>
-        </div>
-        </form>
+            </div>       
+            <p>
+                <label for="password">PAGO</label>
+                <input type="text" name="pago" id="email">
+            </p>
+            </div>
+            <p class="p-alternativo">
+                <input type="submit" name="accion" value="Registrar" class="btn-comun">
+            </p>
+        </form>  
     </div>
      <%@include file="/footer.jsp"%>
     </body>

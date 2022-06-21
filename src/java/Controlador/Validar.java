@@ -9,6 +9,7 @@ import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,19 +35,14 @@ public class Validar extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Validar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Validar at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+//        HttpSession ses= request.getSession();
+//        String accion= request.getParameter("accion");
+//        int ide=Integer.parseInt(String.valueOf(ses.getAttribute("ide")));
+//        if (accion.equals("ListarInfo")) {
+//            List lista=serDAO.Listar(ide);
+//            request.setAttribute("servicio",lista);
+//            request.getRequestDispatcher("CreaRecordatorio.jsp").forward(request, response);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -98,8 +94,7 @@ public class Validar extends HttpServlet {
             usuDAO.Agregar(usu);
             request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
-        
-            
+    
         if(accion.equalsIgnoreCase("Ingresar")){
             String cor=request.getParameter("email");
             String pass=request.getParameter("password");
@@ -107,6 +102,7 @@ public class Validar extends HttpServlet {
             if (usu.getCOR_USU()!=null) {
 //                response.sendRedirect("Controlador?accion=Index2");
                 HttpSession ses= request.getSession();
+                ses.setAttribute("ide", usu.getIDE_USU());
                 ses.setAttribute("corr", usu.getCOR_USU());
                 ses.setAttribute("nomb", usu.getNOM_USU());
                 ses.setAttribute("apel", usu.getAPE_USU());
@@ -114,6 +110,23 @@ public class Validar extends HttpServlet {
             } else {
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
+        }
+        
+        if(accion.equalsIgnoreCase("Modificar")){
+        HttpSession ses= request.getSession();
+        int ide=Integer.parseInt(String.valueOf(ses.getAttribute("ide")));
+        String nom=request.getParameter("nombres");
+        String ape=request.getParameter("apellidos");
+        String cor=request.getParameter("email");
+        usu.setIDE_USU(ide);
+        usu.setNOM_USU(nom);
+        usu.setAPE_USU(ape);
+        usu.setCOR_USU(cor);
+        ses.setAttribute("nomb", usu.getNOM_USU());
+        ses.setAttribute("apel", usu.getAPE_USU());
+        ses.setAttribute("corr", usu.getCOR_USU());
+        usuDAO.Modificar(usu);
+        request.getRequestDispatcher("Perfil.jsp").forward(request, response);
         }
     }
 
